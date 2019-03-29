@@ -1,26 +1,29 @@
-#
-#Banking simulator. Write a code in python that simulates the banking system. 
-#The program should:
-# - be able to create new banks
-# - store client information in banks
-# - allow for cash input and withdrawal
-# - allow for money transfer from client to client
-#If you can think of any other features, you can add them.
-#This code shoud be runnable with 'python kol1.py'.
-#You don't need to use user input, just show me in the script that the structure of your code works.
-#If you have spare time you can implement: Command Line Interface, some kind of data storage, or even multiprocessing.
-#
-#Try to expand your implementation as best as you can. 
-#Think of as many features as you can, and try implementing them.
-#Make intelligent use of pythons syntactic sugar (overloading, iterators, generators, etc)
-#Most of all: CREATE GOOD, RELIABLE, READABLE CODE.
-#The goal of this task is for you to SHOW YOUR BEST python programming skills.
-#Impress everyone with your skills, show off with your code.
-#
-#Your program must be runnable with command "python task.py".
-#Show some usecases of your library in the code (print some things)
-#
-#When you are done upload this code to your github repository. 
-#
-#Delete these comments before commit!
-#Good luck.
+class Bank():
+        def __init__(self, name, stat):
+                self.client_name = name
+                self.account_status = stat
+        def withdraw(self, how_much):
+                self.account_status = self.account_status - how_much
+        def cash_input(self,  money_input):
+                self.account_status = self.account_status + money_input
+
+class ClientAccount(Bank):
+        def __init__(self, name, stat):
+                self.client_name = name
+                self.account_status = stat
+        def transfer(self, trans, Bank):
+                Bank.account_status = Bank.account_status + trans
+                self.account_status = self.account_status - trans
+
+
+
+bank = Bank("Kowalski", 1000)
+bank2 = Bank("Dom", 1500)
+bank3 = ClientAccount("HH", 1000)
+print(bank3.account_status)
+bank3.account_status = 1500
+bank3.transfer(200, bank)
+print(bank3.client_name)
+#bank.cash_input(150)
+print(bank.account_status)
+
